@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E9g-8D-QCq">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Memo View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="MemoViewController" id="BYZ-38-t0r" customClass="MemoViewController" customModule="MemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-nb-hhl">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="KJf-Tv-exA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemoTableViewCell" rowHeight="100" id="LNt-QX-Jtm" customClass="MemoTableViewCell" customModule="MemoApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="93.5" width="374" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LNt-QX-Jtm" id="cR3-RP-1IQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KO3-Kd-rzp">
+                                                    <rect key="frame" x="30" y="31" width="42" height="48"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9e-HU-0oX">
+                                                    <rect key="frame" x="122" y="20" width="232" height="60"/>
+                                                    <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KO3-Kd-rzp" firstAttribute="leading" secondItem="cR3-RP-1IQ" secondAttribute="leadingMargin" constant="10" id="4hg-tc-99Q"/>
+                                                <constraint firstItem="KO3-Kd-rzp" firstAttribute="top" secondItem="cR3-RP-1IQ" secondAttribute="topMargin" constant="20" id="NFT-fH-deK"/>
+                                                <constraint firstAttribute="bottom" secondItem="Z9e-HU-0oX" secondAttribute="bottom" constant="20" id="RXe-io-oQ2"/>
+                                                <constraint firstItem="Z9e-HU-0oX" firstAttribute="top" secondItem="cR3-RP-1IQ" secondAttribute="top" constant="20" id="UIa-ad-Fbz"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z9e-HU-0oX" secondAttribute="trailing" constant="20" id="jSz-Pm-9oX"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KO3-Kd-rzp" secondAttribute="bottom" constant="10" id="rQ4-Ve-ZRX"/>
+                                                <constraint firstItem="Z9e-HU-0oX" firstAttribute="leading" secondItem="KO3-Kd-rzp" secondAttribute="trailing" constant="50" id="rmT-R3-sav"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ip8-nb-hhl" secondAttribute="trailing" id="K5D-pf-LGl"/>
+                            <constraint firstItem="ip8-nb-hhl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fRd-1j-x6i"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ip8-nb-hhl" secondAttribute="bottom" id="mOW-Ru-5yV"/>
+                            <constraint firstItem="ip8-nb-hhl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="txz-6C-k0x"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fcU-Ku-ZYX"/>
+                    <connections>
+                        <outlet property="memoSearchBar" destination="KJf-Tv-exA" id="5Go-7U-sNi"/>
+                        <outlet property="memoTableView" destination="ip8-nb-hhl" id="wCD-wg-GW7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="955.07246376811599" y="69.642857142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ze7-YT-fs6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E9g-8D-QCq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4hu-pm-iiw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance"/>
+                        <navigationBarAppearance key="compactScrollEdgeAppearance"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="voh-kP-dcM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNA-cn-PzX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44.927536231884062" y="69.642857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
