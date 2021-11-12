@@ -6,8 +6,27 @@
 //
 
 import UIKit
+import RealmSwift
+
+enum MemoSection: Int, CaseIterable {
+    case basic
+    case pinned
+    
+    var description: String {
+        switch self {
+        case .basic:
+            return "메모"
+        case .pinned:
+            return "고정된 메모"
+        }
+    }
+}
 
 class MemoViewController: UIViewController {
+    
+    let localRealm = try! Realm()
+    
+    var tasks: Results<UserMemo>!
 
     @IBOutlet weak var memoSearchBar: UISearchBar!
     @IBOutlet weak var memoTableView: UITableView!
@@ -19,6 +38,10 @@ class MemoViewController: UIViewController {
         memoTableView.dataSource = self
         
         customAppearance()
+        
+        tasks = localRealm.objects(UserMemo.self)
+        print("테스크", tasks)
+        print(localRealm.configuration.fileURL)
     }
 
     func customAppearance() {
@@ -43,15 +66,25 @@ class MemoViewController: UIViewController {
             ]
     }
     
-    func customSearchBar() {
+    @IBAction func writeButtonClicked(_ sender: UIBarButtonItem) {
+        print("작성 버튼 클릭")
         
+        // 1. storyboard
+        let sb = UIStoryboard(name: "Content", bundle: nil)
+        
+        // 2. viewcontroller
+        let vc = sb.instantiateViewController(withIdentifier: ContentViewController.identifier) as! ContentViewController
+        
+        // 3. push
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }
 
 extension MemoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,10 +92,24 @@ extension MemoViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        let row = tasks[indexPath.row]
+        
+        cell.configureCell(row: row)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let row = tasks[indexPath.row]
+        
+        try! localRealm.write {
+            localRealm.delete(row)
+            tableView.reloadData()
+        }
     }
 }
