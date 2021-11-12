@@ -43,7 +43,13 @@ class MemoViewController: UIViewController {
         print("테스크", tasks)
         print(localRealm.configuration.fileURL)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        memoTableView.reloadData()
+    }
+    
     func customAppearance() {
         navigationItem.title = "0개의 메모"
         memoTableView.backgroundColor = .systemGray
@@ -111,5 +117,31 @@ extension MemoViewController: UITableViewDelegate, UITableViewDataSource {
             localRealm.delete(row)
             tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let row = tasks[indexPath.row]
+        
+        let pinned = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("pinned 클릭")
+            
+            try! self.localRealm.write {
+                if row.pinned == false {
+                    row.pinned = true
+                } else {
+                    row.pinned = false
+                }
+                
+                tableView.reloadData()
+            }
+            
+            success(true)
+        }
+        
+        pinned.backgroundColor = .orange
+        pinned.image = UIImage(systemName: "pin.fill")
+        
+        return UISwipeActionsConfiguration(actions: [pinned])
     }
 }
