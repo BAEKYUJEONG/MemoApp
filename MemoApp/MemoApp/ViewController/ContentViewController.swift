@@ -15,12 +15,16 @@ class ContentViewController: UIViewController {
     static let identifier = "ContentViewController"
     let localRealm = try! Realm()
 
+    var textSpace:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "메모", style: .plain, target: self, action: #selector(closeButtonClicked))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonClicked))
+        
+        contentTextView.text = textSpace
     }
     
     @objc func closeButtonClicked() {
